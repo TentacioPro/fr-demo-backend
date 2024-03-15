@@ -1,6 +1,9 @@
 import express from "express";
 import { MongoClient } from 'mongodb';
 import { ObjectId } from "mongodb";
+import cors from "cors";
+
+
 
 const app = express();
 const url ="mongodb+srv://maharajanabishek:abishek123@abishekm.cow2tws.mongodb.net/?retryWrites=true&w=majority&appName=AbishekM";
@@ -9,6 +12,7 @@ await client.connect();
 console.log("mongoDB connected successfully");
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/",function(request,response){
     response.send("hello world")
