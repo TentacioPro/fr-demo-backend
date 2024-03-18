@@ -13,7 +13,13 @@ await client.connect();
 console.log("mongoDB connected successfully");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    //origin:"*",                    // global access 
+   // origin:"http://localhost:3000",  // vercel.app
+    // origin:"https:// vercel.app",
+
+}));
+
 const auth = (request, response, next) => {
     try {
         const token = request.header("backend-token"); // keyname
@@ -96,11 +102,11 @@ app.post("/login",async function(request,response){
             response.status(200).send({token:token});
         }
         else{
-            response.status(400).send("Invalid Password");
+            response.status(400).send({message:"Invalid Password"});
         }
     }
     else {
-        response.status(400).send("Invalid email-id");
+        response.status(400).send({message:"Invalid Email-id"});
     }
 });
 
