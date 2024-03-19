@@ -13,12 +13,12 @@ await client.connect();
 console.log("mongoDB connected successfully");
 
 app.use(express.json());
-app.use(cors({
+app.use(cors(
     //origin:"*",                    // global access 
    // origin:"http://localhost:3000",  // vercel.app
     // origin:"https:// vercel.app",
 
-}));
+));
 
 const auth = (request, response, next) => {
     try {
